@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="faviconStandIn.png">
+    <title>roman numeral converter</title>
+</head>
+<body>
+     <div id="inputs">
+        <input type="number" id="input">
+        <button id="click" value="Submit" onclick="check(input)">Submit</button>
+     </div>
+    <div id="output">
+        <p id="result"></p>
+    </div>
+    <script>
+        let input = document.getElementById('input');
+        let result = document.getElementById('result')
+        
+        let arr = [
+            {value: 1000, worth: "M"},
+            {value: 900, worth: "CM"},
+            {value: 500, worth: "D"},
+            {value: 400, worth: "CD"},
+            {value: 100, worth: "C"},
+            {value: 90, worth: "XC"},
+            {value: 50, worth: "L"},
+            {value: 40, worth: "XL"},
+            {value: 10, worth: "X"},
+            {value: 9, worth: "IX"},
+            {value: 5, worth: "V"},
+            {value: 4, worth: "IV"},
+            {value: 1, worth: "I"}
+        ]
+        function check(x) {
+            let test = x.value;
+            let total = [];   
+            let count = 0;      
+            let neg = Math.sign(test);
+            let max = 4000
+            
+            if(test < max && test !=="" && neg !== -1) {                
+                            
+             for(let i = 0; i < arr.length; i++){
+                while(test >= arr[i].value) {
+                 test -= arr[i].value
+                 total.push(arr[i].worth)
+                 console.log(arr[i].value)
+                 console.log(test)                
+                }
+                
+                
+              if(test == 0) {
+                console.log("done")
+                result.innerHTML = total.join("");
+                break;
+              }                          
+             } 
+            } 
+             else if(test == "") {
+                alert('Please enter a valid number')              
+                
+             } else if(neg == -1) {
+                alert("Please enter a number greater than or equal to 1")
+             }
+ 
+             else {
+                alert("Please enter a number less than or equal to 3999");
+            }
+            
+        }
+    </script>
+</body>
+</html>
